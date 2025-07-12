@@ -17,7 +17,7 @@ try:
 except LookupError:
     nltk.download('stopwords')
 
-try:
+try: 
     nltk.data.find('tokenizers/punkt')
 except LookupError:
     nltk.download('punkt')
