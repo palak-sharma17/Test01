@@ -1,9 +1,9 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
-import re
-import string
+import seaborn as sns 
+import re 
+import string 
 from wordcloud import WordCloud
 
 # NLTK downloads - run these once if you haven't already
@@ -92,21 +92,24 @@ ham_words = ' '.join(df[df['label'] == 'ham']['message'])
 
 plt.figure(figsize=(15, 7))
 
-# Create and display Word Cloud for Spam messages
-plt.subplot(1, 2, 1) # 1 row, 2 columns, first plot
+# Create and save Word Cloud for Spam messages
+plt.subplot(1, 2, 1)
 spam_wordcloud = WordCloud(width=800, height=400, background_color='white').generate(spam_words)
 plt.imshow(spam_wordcloud, interpolation='bilinear')
 plt.title('Spam Word Cloud')
-plt.axis('off') # Hide axes for cleaner look
+plt.axis('off')
 
-# Create and display Word Cloud for Ham messages
-plt.subplot(1, 2, 2) # 1 row, 2 columns, second plot
+# Create and save Word Cloud for Ham messages
+plt.subplot(1, 2, 2)
 ham_wordcloud = WordCloud(width=800, height=400, background_color='white').generate(ham_words)
 plt.imshow(ham_wordcloud, interpolation='bilinear')
 plt.title('Ham Word Cloud')
-plt.axis('off') # Hide axes for cleaner look
-plt.show()
-print("Word clouds displayed.")
+plt.axis('off')
+
+plt.savefig("wordcloud_output.png")
+plt.close()
+print("Word clouds saved as 'wordcloud_output.png'")
+
 
 # --- Phase 3: Text Preprocessing ---
 
@@ -209,7 +212,10 @@ print(cm)
 disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['Ham', 'Spam'])
 disp.plot(cmap=plt.cm.Blues) # Use a blue color map
 plt.title('Confusion Matrix')
-plt.show()
+plt.savefig("confusion_matrix_output.png")
+plt.close()
+
+
 
 print("\nClassification Report:")
 # The classification report provides precision, recall, and F1-score for each class.
